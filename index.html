@@ -492,40 +492,6 @@
       object-fit: cover;
     }
 
-    /* Play button overlay */
-    .video-play-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.35);
-      transition: background var(--t), opacity var(--t);
-      z-index: 2;
-    }
-
-    .video-wrapper.playing .video-play-overlay {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .play-btn {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform var(--t), box-shadow var(--t);
-      border: none;
-    }
-    .play-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 0 16px rgba(245,197,24,0.15);
-    }
-    .play-btn svg {
-      margin-left: 4px;
-    }
 
     .video-caption {
       margin-top: 20px;
@@ -1649,19 +1615,12 @@
         <video
           id="mainVideo"
           src="ScreenRecording_03-15-2026 13-07-22_1.mov"
-          preload="metadata"
+          preload="auto"
           playsinline
+          autoplay
           loop
           muted
         ></video>
-
-        <div class="video-play-overlay" id="videoOverlay">
-          <button class="play-btn" id="playBtn" aria-label="Afspelen">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5l11 7-11 7V5z" fill="#000"/>
-            </svg>
-          </button>
-        </div>
       </div>
 
       <p class="video-caption fade-up">Hamza Kalai — coaching session · Alkmaar</p>
@@ -2242,30 +2201,11 @@
 
     document.querySelectorAll('.stat-number[data-target]').forEach(el => counterIO.observe(el));
 
-    // ── Video player
+    // ── Video autoplay loop
     const video = document.getElementById('mainVideo');
-    const wrapper = document.getElementById('videoWrapper');
-    const overlay = document.getElementById('videoOverlay');
-    const playBtn = document.getElementById('playBtn');
-
-    function togglePlay() {
-      if (video.paused) {
-        video.muted = false;
-        video.play();
-        wrapper.classList.add('playing');
-      } else {
-        video.pause();
-        wrapper.classList.remove('playing');
-      }
-    }
-
-    playBtn.addEventListener('click', togglePlay);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) togglePlay();
-    });
-
-    video.addEventListener('ended', () => {
-      wrapper.classList.remove('playing');
+    video.play().catch(() => {
+      // Autoplay blocked — retry on first user interaction
+      document.addEventListener('click', () => video.play(), { once: true });
     });
 
     // ── FAQ accordion
