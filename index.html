@@ -547,6 +547,10 @@
       display: block;
     }
 
+    /* Desktop: B&W portrait visible, workhard hidden */
+    .about-img-mobile { display: none; }
+    .about-img-desktop { display: block; }
+
     /* Gold shimmer gradient over the photo */
     .about-img-wrap::after {
       content: '';
@@ -1396,7 +1400,16 @@
       .about { padding: 64px 20px; }
       .about-inner { grid-template-columns: 1fr; gap: 36px; }
       .about-visual { display: block; }
-      .about-img-wrap img { max-height: 320px; object-fit: cover; object-position: center 15%; width: 100%; }
+      /* Swap to workhard photo on mobile */
+      .about-img-desktop { display: none; }
+      .about-img-mobile {
+        display: block;
+        max-height: 280px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        filter: none;
+      }
       .about-cert-strip { position: static; margin-top: 12px; border-radius: var(--radius); }
 
       /* Services */
@@ -1632,7 +1645,8 @@
     <div class="about-inner">
       <div class="about-visual fade-up">
         <div class="about-img-wrap">
-          <img src="IMG_3531.jpg" alt="Hamza Kalai" />
+          <img class="about-img-desktop" src="IMG_3531.jpg" alt="Hamza Kalai" />
+          <img class="about-img-mobile" src="workhard.jpg" alt="Hamza Kalai — Hard Work Pays Off" />
         </div>
         <div class="about-cert-strip">
           <div class="cert-badge">
