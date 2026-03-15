@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalai Coaching — Online Personal Training & Dieetbegeleiding</title>
+  <meta name="description" content="Hamza Kalai — Gecertificeerd Personal Trainer, Lifestyle Coach & Diëtist. 1200+ tevreden klanten. Online coaching voor blijvende resultaten." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #F5C518;
+      --gold-mid:    #D4A800;
+      --gold-dim:    #A07800;
+      --gold-glow:   rgba(245, 197, 24, 0.14);
+      --gold-glow2:  rgba(245, 197, 24, 0.06);
+      --bg:          #080808;
+      --bg2:         #0e0e0e;
+      --bg3:         #161616;
+      --bg4:         #1c1c1c;
+      --border:      rgba(255,255,255,0.07);
+      --border-gold: rgba(245,197,24,0.22);
+      --text:        #EFEFEF;
+      --muted:       #777;
+      --muted2:      #555;
+      --radius:      12px;
+      --radius-lg:   20px;
+      --radius-xl:   28px;
+      --max:         1180px;
+      --t:           0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay for editorial feel */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px 180px;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; line-height: 1.1; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+    /* ─── Utility ─────────────────────────────────────────── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-glow);
+      border: 1px solid var(--border-gold);
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+    .tag::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px var(--gold);
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    .gold { color: var(--gold); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      padding: 15px 30px;
+      border-radius: 100px;
+      border: none;
+      transition: var(--t);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #FFD740;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(245,197,24,0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--border-gold);
+      color: var(--gold);
+    }
+
+    /* ─── Navigation ──────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 28px;
+      transition: var(--t);
+    }
+
+    .nav.scrolled {
+      background: rgba(8,8,8,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--t);
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: var(--t);
+    }
+
+    /* ─── Hero ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left content pane */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px 48px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Subtle left-side glow */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,197,24,0.06), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-line {
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .eyebrow-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      line-height: 1.0;
+    }
+
+    .hero-title .accent {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 1.5px var(--text);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 44px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .hero-proof-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proof-val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+    }
+
+    .proof-lbl {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .proof-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+    }
+
+    /* Right photo pane */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%) contrast(1.05);
+    }
+
+    /* Gradient fade from photo into dark bg on left edge */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        var(--bg) 0%,
+        transparent 20%
+      );
+      z-index: 1;
+    }
+
+    /* Bottom fade */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    /* Floating credential badge on the photo */
+    .hero-cred-badge {
+      position: absolute;
+      bottom: 48px;
+      right: 32px;
+      z-index: 2;
+      background: rgba(8,8,8,0.82);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 220px;
+    }
+
+    .cred-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--gold-glow);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .cred-text strong {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      display: block;
+    }
+    .cred-text span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ─── Stats Bar ───────────────────────────────────────── */
+    .stats-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 0 28px;
+    }
+
+    .stats-bar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      padding: 44px 24px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 2px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .stat-item.visible::before { opacity: 1; }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    /* ─── Video Reel ──────────────────────────────────────── */
+    .video-reel {
+      padding: 100px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-reel-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .video-reel-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      cursor: pointer;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+      max-height: 78vh;
+      object-fit: cover;
+    }
+
+    /* Play button overlay */
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background var(--t), opacity var(--t);
+      z-index: 2;
+    }
+
+    .video-wrapper.playing .video-play-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .play-btn {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--t), box-shadow var(--t);
+      border: none;
+    }
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 16px rgba(245,197,24,0.15);
+    }
+    .play-btn svg {
+      margin-left: 4px;
+    }
+
+    .video-caption {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Gold glow behind video */
+    .video-reel::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(ellipse, rgba(245,197,24,0.04), transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── About ───────────────────────────────────────────── */
+    .about {
+      padding: 100px 28px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      filter: grayscale(20%) contrast(1.05);
+      display: block;
+    }
+
+    /* Gold shimmer gradient over the photo */
+    .about-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 100%);
+    }
+
+    .about-cert-strip {
+      position: absolute;
+      bottom: 24px; left: 20px; right: 20px;
+      z-index: 2;
+      background: rgba(8,8,8,0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      gap: 0;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .cert-badge { text-align: center; flex: 1; }
+    .cert-badge .cert-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--gold);
+      display: block;
+    }
+    .cert-badge .cert-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .cert-div { width: 1px; height: 32px; background: var(--border); }
+
+    .about-content {}
+
+    .about-bio {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .about-highlights {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--t), transform var(--t);
+    }
+    .highlight-item:hover {
+      border-color: var(--border-gold);
+      transform: translateX(4px);
+    }
+
+    .highlight-icon {
+      font-size: 20px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .highlight-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .highlight-text p { font-size: 13px; color: var(--muted); }
+
+    /* ─── Services ────────────────────────────────────────── */
+    .services {
+      padding: 100px 28px;
+    }
+
+    .services-inner { max-width: var(--max); margin: 0 auto; }
+
+    .services-header {
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      transition: var(--t);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity var(--t);
+    }
+
+    .service-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      background: var(--gold-glow);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 22px;
+    }
+
+    .service-title {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #ccc;
+    }
+    .service-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ─── How It Works ────────────────────────────────────── */
+    .how {
+      padding: 100px 28px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .how-inner { max-width: var(--max); margin: 0 auto; }
+
+    .how-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 72px;
+    }
+    .how-header .section-sub { margin: 0 auto; }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .how-connector {
+      position: absolute;
+      top: 39px;
+      left: calc(16.67% + 20px);
+      right: calc(16.67% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-mid) 50%, var(--gold) 100%);
+      opacity: 0.25;
+    }
+
+    .how-step { text-align: center; padding: 0 28px; }
+
+    .step-num {
+      width: 78px; height: 78px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 8px var(--bg2), 0 0 24px rgba(245,197,24,0.12);
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── Results ─────────────────────────────────────────── */
+    .results {
+      padding: 100px 28px;
+    }
+
+    .results-inner { max-width: var(--max); margin: 0 auto; }
+
+    .results-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .result-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--t);
+    }
+    .result-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .result-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #1a1a1a, #0d0d0d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      opacity: 0.25;
+      position: relative;
+    }
+
+    /* Photo variants */
+    .result-img-photo {
+      opacity: 1;
+      overflow: hidden;
+    }
+
+    .result-img-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .result-card:hover .result-img-photo img {
+      transform: scale(1.04);
+    }
+
+    /* Champions card: show full group photo — object-position center */
+    .result-img-champions img {
+      object-position: center center;
+    }
+
+    .result-img-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 10px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.92), transparent);
+    }
+
+    .img-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .img-tag.before { background: rgba(255,255,255,0.12); }
+    .img-tag.after  { background: var(--gold); color: #000; }
+
+    .result-info { padding: 18px 20px; }
+    .result-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .result-quote { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 14px; line-height: 1.6; }
+
+    .result-stats { display: flex; gap: 10px; }
+    .result-stat {
+      flex: 1; text-align: center;
+      padding: 9px 6px;
+      background: var(--bg3);
+      border-radius: 8px;
+    }
+    .result-stat-val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--gold);
+      display: block;
+    }
+    .result-stat-lbl {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Pricing ─────────────────────────────────────────── */
+    .pricing {
+      padding: 100px 28px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-inner { max-width: 900px; margin: 0 auto; }
+
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-header .section-sub { margin: 0 auto; }
+
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 44px;
+    }
+
+    .toggle-label { font-size: 13px; font-weight: 500; color: var(--muted); }
+    .toggle-label.active { color: var(--text); }
+
+    .toggle-track {
+      width: 50px; height: 26px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      position: relative;
+      cursor: pointer;
+      transition: background var(--t);
+    }
+    .toggle-track.on { background: var(--gold); }
+    .toggle-thumb {
+      width: 18px; height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px; left: 4px;
+      transition: left var(--t);
+    }
+    .toggle-track.on .toggle-thumb { left: 28px; }
+
+    .save-badge {
+      font-size: 10px; font-weight: 700;
+      background: var(--gold); color: #000;
+      padding: 2px 8px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .pricing-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      position: relative;
+      transition: var(--t);
+    }
+    .pricing-card:hover { border-color: var(--border-gold); }
+
+    .pricing-card.featured {
+      background: var(--bg4);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold-mid), 0 40px 80px rgba(245,197,24,0.07);
+    }
+
+    .featured-label {
+      position: absolute;
+      top: -13px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold); color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .pricing-plan-name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .pricing-plan-desc { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+    .pricing-amount { display: flex; align-items: baseline; gap: 3px; margin-bottom: 24px; }
+    .price-currency { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 18px; color: var(--muted); }
+    .price-val { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 56px; letter-spacing: -0.04em; line-height: 1; }
+    .price-period { font-size: 13px; color: var(--muted); }
+
+    .pricing-divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 28px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 11px; font-size: 13px; }
+    .pricing-features li .check { color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── Testimonials ────────────────────────────────────── */
+    .testimonials {
+      padding: 100px 28px;
+    }
+
+    .testimonials-inner { max-width: var(--max); margin: 0 auto; }
+
+    .testimonials-header { text-align: center; max-width: 560px; margin: 0 auto 56px; }
+    .testimonials-header .section-sub { margin: 0 auto; }
+
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    .testimonial-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--t);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .testimonial-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-3px);
+    }
+
+    .testimonial-stars { display: flex; gap: 3px; }
+    .testimonial-stars span { color: var(--gold); font-size: 14px; }
+
+    .testimonial-text { font-size: 13px; color: #bbb; line-height: 1.8; font-style: italic; flex: 1; }
+
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+
+    .author-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-mid), #7a5800);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 14px; color: #000;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-size: 13px; font-weight: 700; }
+    .author-result { font-size: 11px; color: var(--gold); margin-top: 2px; }
+
+    /* ─── FAQ ─────────────────────────────────────────────── */
+    .faq { padding: 100px 28px; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--t);
+    }
+    .faq-item.open { border-color: var(--border-gold); }
+
+    .faq-question {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 22px;
+      background: none; border: none;
+      color: var(--text); text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px;
+    }
+
+    .faq-icon {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--bg4); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--gold);
+      flex-shrink: 0; transition: transform var(--t);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 260px; }
+
+    .faq-answer-inner { padding: 0 22px 20px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    /* ─── CTA ─────────────────────────────────────────────── */
+    .cta {
+      padding: 120px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Photo as CTA background */
+    .cta-photo-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: grayscale(30%) brightness(0.18) contrast(1.1);
+    }
+
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,197,24,0.07), transparent 70%),
+        linear-gradient(to bottom, var(--bg) 0%, rgba(8,8,8,0.3) 40%, rgba(8,8,8,0.3) 60%, var(--bg) 100%);
+    }
+
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-title {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 44px; }
+
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    .cta-trust {
+      display: flex; align-items: center; justify-content: center; gap: 28px;
+      margin-top: 36px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .trust-item .ico { font-size: 14px; }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 64px 28px 36px;
+      background: var(--bg2);
+    }
+
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: 0.04em; margin-bottom: 14px; }
+    .footer-logo span { color: var(--gold); }
+
+    .footer-brand-desc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 260px; margin-bottom: 22px; }
+
+    .footer-socials { display: flex; gap: 10px; }
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: var(--bg3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; transition: var(--t);
+    }
+    .social-link:hover { border-color: var(--border-gold); background: var(--gold-glow); }
+
+    .footer-col h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--muted2); margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul li a { font-size: 13px; color: #666; transition: color var(--t); }
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    .footer-copy { font-size: 12px; color: var(--muted2); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 12px; color: var(--muted2); transition: color var(--t); }
+    .footer-legal a:hover { color: var(--text); }
+
+    /* ─── Animations ──────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Mobile Nav Drawer ───────────────────────────────── */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .mobile-nav-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-nav-drawer {
+      position: absolute;
+      top: 0; right: 0;
+      width: min(320px, 85vw);
+      height: 100%;
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .mobile-nav.open {
+      pointer-events: all;
+    }
+    .mobile-nav.open .mobile-nav-backdrop { opacity: 1; }
+    .mobile-nav.open .mobile-nav-drawer { transform: translateX(0); }
+
+    .mobile-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+    }
+    .mobile-nav-logo span { color: var(--gold); }
+
+    .mobile-nav-close {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--muted);
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .mobile-nav-close:hover { color: var(--text); border-color: var(--border-gold); }
+
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      flex: 1;
+    }
+
+    .mobile-nav-links li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color var(--t), background var(--t);
+      border-left: 2px solid transparent;
+    }
+    .mobile-nav-links li a:hover {
+      color: var(--text);
+      background: var(--bg3);
+      border-left-color: var(--gold);
+    }
+
+    .mobile-nav-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 100px 28px 56px; }
+      .hero-right { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { display: block; }
+      .about-img-wrap img { max-height: 420px; object-fit: cover; object-position: center top; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links, .nav > .btn { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero: show photo as full-bleed background */
+      .hero {
+        display: block;
+        position: relative;
+        min-height: 100svh;
+      }
+
+      .hero-right {
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-photo {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        filter: grayscale(15%) brightness(0.55) contrast(1.1);
+      }
+
+      /* Re-override gradients for mobile */
+      .hero-right::before {
+        background: linear-gradient(to bottom,
+          rgba(8,8,8,0.4) 0%,
+          transparent 30%
+        );
+      }
+      .hero-right::after {
+        height: 55%;
+        background: linear-gradient(to top, var(--bg) 0%, rgba(8,8,8,0.6) 60%, transparent 100%);
+      }
+
+      .hero-left {
+        position: relative;
+        z-index: 1;
+        padding: 100px 20px 52px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 100svh;
+      }
+
+      .hero-cred-badge { display: none; }
+
+      .hero-title { font-size: 38px; }
+
+      .hero-desc { font-size: 15px; margin-bottom: 32px; }
+
+      .hero-actions { gap: 10px; }
+      .hero-actions .btn { padding: 14px 22px; font-size: 14px; }
+      .hero-actions .btn:last-child { display: none; } /* hide ghost btn on mobile — save space */
+
+      .hero-proof-row {
+        gap: 14px;
+        padding-top: 28px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .hero-proof-row::-webkit-scrollbar { display: none; }
+      .proof-val { font-size: 18px; }
+      .proof-lbl { font-size: 10px; white-space: nowrap; }
+
+      /* Stats */
+      .stats-bar { padding: 0 20px; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item {
+        padding: 32px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .stat-item:nth-child(odd)  { border-right: 1px solid var(--border); }
+      .stat-item:nth-child(3),
+      .stat-item:nth-child(4)    { border-bottom: none; }
+      .stat-number { font-size: 38px; }
+
+      /* Video reel */
+      .video-reel { padding: 64px 20px; }
+      .video-reel-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .video-reel-header .btn { width: 100%; justify-content: center; }
+
+      /* About */
+      .about { padding: 64px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 36px; }
+      .about-visual { display: block; }
+      .about-img-wrap img { max-height: 320px; object-fit: cover; object-position: center 15%; width: 100%; }
+      .about-cert-strip { position: static; margin-top: 12px; border-radius: var(--radius); }
+
+      /* Services */
+      .services { padding: 64px 20px; }
+      .services-grid { grid-template-columns: 1fr; gap: 14px; }
+
+      /* How */
+      .how { padding: 64px 20px; }
+      .how-steps { grid-template-columns: 1fr; gap: 36px; }
+      .how-connector { display: none; }
+      .how-step { padding: 0; }
+      .step-num { width: 64px; height: 64px; font-size: 22px; }
+
+      /* Results */
+      .results { padding: 64px 20px; }
+      .results-grid { grid-template-columns: 1fr; }
+      .results-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .results-header .btn { width: 100%; justify-content: center; }
+
+      /* Pricing */
+      .pricing { padding: 64px 20px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card { padding: 32px 24px; }
+      .price-val { font-size: 48px; }
+      .pricing-toggle { gap: 10px; }
+
+      /* Testimonials */
+      .testimonials { padding: 64px 20px; }
+      .testimonials-grid { grid-template-columns: 1fr; gap: 12px; }
+
+      /* FAQ */
+      .faq { padding: 64px 20px; }
+
+      /* CTA */
+      .cta { padding: 80px 20px; }
+      .cta-title { font-size: 34px; }
+      .cta-actions { flex-direction: column; align-items: stretch; }
+      .cta-actions .btn { width: 100%; justify-content: center; font-size: 15px; padding: 17px 24px; }
+      .cta-trust { gap: 16px; }
+
+      /* Footer */
+      .footer { padding: 48px 20px 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+
+      /* Global section spacing */
+      .services-header,
+      .how-header,
+      .pricing-header,
+      .testimonials-header,
+      .faq-header { margin-bottom: 36px; }
+
+      /* Increase tap targets */
+      .faq-question { padding: 18px 18px; min-height: 56px; }
+      .btn { min-height: 48px; }
+    }
+
+    /* Extra small (≤390px, iPhone SE etc.) */
+    @media (max-width: 390px) {
+      .hero-title { font-size: 32px; }
+      .section-title { font-size: 26px; }
+      .hero-left { padding-left: 16px; padding-right: 16px; }
+      .container,
+      .about, .services, .how, .results, .pricing,
+      .testimonials, .faq, .cta, .footer,
+      .stats-bar, .video-reel { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">KALAI<span>.</span></a>
+
+      <ul class="nav-links">
+        <li><a href="#over-ons">Over Ons</a></li>
+        <li><a href="#diensten">Diensten</a></li>
+        <li><a href="#resultaten">Resultaten</a></li>
+        <li><a href="#tarieven">Tarieven</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#tarieven" class="btn btn-primary" style="padding:12px 22px;font-size:13px;">
+        Start Nu
+      </a>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Mobile Nav Drawer ──────────────────────────────── -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="mobile-nav-backdrop" id="mobileBackdrop"></div>
+    <div class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">KALAI<span>.</span></div>
+        <button class="mobile-nav-close" id="mobileClose" aria-label="Sluiten">✕</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#over-ons" class="mobile-link">Over Ons</a></li>
+        <li><a href="#diensten" class="mobile-link">Diensten</a></li>
+        <li><a href="#resultaten" class="mobile-link">Resultaten</a></li>
+        <li><a href="#tarieven" class="mobile-link">Tarieven</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <a href="#tarieven" class="btn btn-primary mobile-link" style="width:100%;justify-content:center;">
+          Start Gratis Intake →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section class="hero">
+
+    <!-- Left content -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Online Coaching · Nederland</span>
+      </div>
+
+      <h1 class="hero-title">
+        Jouw lichaam.<br>
+        <span class="accent">Jouw regels.</span><br>
+        <span class="outline">Geen excuses.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Persoonlijk trainings- en voedingsplan op maat van gecertificeerd coach Hamza Kalai.
+        24/7 begeleiding — bereik blijvende resultaten, waar je ook bent.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#tarieven" class="btn btn-primary" style="padding:16px 36px;font-size:15px;">
+          Start Gratis Intake
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#resultaten" class="btn btn-ghost" style="padding:16px 28px;font-size:15px;">Bekijk Transformaties</a>
+      </div>
+
+      <div class="hero-proof-row">
+        <div class="proof-item">
+          <span class="proof-val">1200+</span>
+          <span class="proof-lbl">Tevreden klanten</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">7 jaar</span>
+          <span class="proof-lbl">Ervaring</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-val">4.9★</span>
+          <span class="proof-lbl">Gemiddelde score</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right photo -->
+    <div class="hero-right">
+      <img
+        class="hero-photo"
+        src="IMG_3531.jpg"
+        alt="Hamza Kalai — Personal Trainer & Lifestyle Coach"
+      />
+      <div class="hero-cred-badge">
+        <div class="cred-icon">🏅</div>
+        <div class="cred-text">
+          <strong>Hamza Kalai</strong>
+          <span>NASM · Diëtist · Lifestyle Coach</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ────────────────────────────────────────── -->
+  <section class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item fade-up">
+        <span class="stat-number" data-target="1200" data-suffix="+">0</span>
+        <span class="stat-label">Tevreden klanten</span>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.1s">
+        <span class="stat-number" data-target="7" data-suffix=" jr">0</span>
+        <span class="stat-label">Jaar ervaring</span>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.2s">
+        <span class="stat-number" data-target="15" data-suffix="+">0</span>
+        <span class="stat-label">Wedstrijdwinnaars</span>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.3s">
+        <span class="stat-number" data-target="98" data-suffix="%">0</span>
+        <span class="stat-label">Doelstelling behaald</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Video Reel ────────────────────────────────────────── -->
+  <section class="video-reel" id="reel">
+    <div class="video-reel-inner">
+      <div class="video-reel-header fade-up">
+        <div>
+          <div class="tag">In actie</div>
+          <h2 class="section-title">Zie de <span class="gold">aanpak</span> in actie</h2>
+        </div>
+        <a href="#tarieven" class="btn btn-ghost">Word de volgende →</a>
+      </div>
+
+      <div class="video-wrapper fade-up" id="videoWrapper">
+        <video
+          id="mainVideo"
+          src="ScreenRecording_03-15-2026 13-07-22_1.mov"
+          preload="metadata"
+          playsinline
+          loop
+          muted
+        ></video>
+
+        <div class="video-play-overlay" id="videoOverlay">
+          <button class="play-btn" id="playBtn" aria-label="Afspelen">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M8 5l11 7-11 7V5z" fill="#000"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="video-caption fade-up">Hamza Kalai — coaching session · Alkmaar</p>
+    </div>
+  </section>
+
+  <!-- ── About ─────────────────────────────────────────────── -->
+  <section class="about" id="over-ons">
+    <div class="about-inner">
+      <div class="about-visual fade-up">
+        <div class="about-img-wrap">
+          <img src="IMG_3531.jpg" alt="Hamza Kalai" />
+        </div>
+        <div class="about-cert-strip">
+          <div class="cert-badge">
+            <span class="cert-name">NASM</span>
+            <span class="cert-desc">Certified Trainer</span>
+          </div>
+          <div class="cert-div"></div>
+          <div class="cert-badge">
+            <span class="cert-name">Diëtist</span>
+            <span class="cert-desc">Milo Education</span>
+          </div>
+          <div class="cert-div"></div>
+          <div class="cert-badge">
+            <span class="cert-name">7+ Jaar</span>
+            <span class="cert-desc">Ervaring</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content fade-up" style="transition-delay:.15s">
+        <div class="tag">Over Hamza Kalai</div>
+        <h2 class="section-title">Coaching die verder gaat<br>dan de <span class="gold">sportschool</span></h2>
+        <p class="about-bio">
+          Ik ben Hamza Kalai — personal trainer, lifestyle coach en diëtist gevestigd in Alkmaar.
+          Mijn missie is simpel: duurzame resultaten zonder crashdiëten of generieke programma's.
+        </p>
+        <p class="about-bio">
+          Met meer dan 7 jaar ervaring en 1.200+ klanten weet ik dat elk lichaam anders is.
+          Jij krijgt een plan dat 100% op jou is afgestemd — van voeding tot training tot mindset.
+          Online én in persoon.
+        </p>
+
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🎯</div>
+            <div class="highlight-text">
+              <h4>100% Gepersonaliseerd</h4>
+              <p>Geen standaardprogramma's. Jouw plan is gebouwd op jouw lichaam, doelen en levensstijl.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">📱</div>
+            <div class="highlight-text">
+              <h4>24/7 Bereikbaar</h4>
+              <p>Online coaching betekent dat je altijd een vraag kunt stellen — geen wachttijden.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">🧠</div>
+            <div class="highlight-text">
+              <h4>Mindset & Lifestyle</h4>
+              <p>Fysieke resultaten beginnen mentaal. Ik begeleid je op beide vlakken tegelijk.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ───────────────────────────────────────────── -->
+  <section class="services" id="diensten">
+    <div class="services-inner">
+      <div class="services-header fade-up">
+        <div class="tag">Wat ik aanbied</div>
+        <h2 class="section-title">Alles wat je nodig hebt<br>om te <span class="gold">slagen</span></h2>
+        <p class="section-sub">Van afvallen tot wedstrijdvoorbereiding — een aanpak voor elk doel.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">🔥</div>
+          <h3 class="service-title">Gewichtsverlies</h3>
+          <p class="service-desc">Vet verbranden zonder spierverlies. Een duurzame aanpak die je metabolisme respecteert.</p>
+          <ul class="service-features">
+            <li>Gepersonaliseerd calorieplan</li>
+            <li>Wekelijkse voortgangscheck</li>
+            <li>Aangepaste trainingsschema's</li>
+            <li>Suppletieadvies</li>
+          </ul>
+        </div>
+
+        <div class="service-card fade-up" style="transition-delay:.1s">
+          <div class="service-icon">💪</div>
+          <h3 class="service-title">Spieropbouw</h3>
+          <p class="service-desc">Maximale spiermassa met intelligente periodisering en op maat gemaakte voedingsprotocollen.</p>
+          <ul class="service-features">
+            <li>Progressieve overload planning</li>
+            <li>Maandelijkse lichaamsanalyse</li>
+            <li>Eiwitoptimalisatie</li>
+            <li>Herstel & slaapcoaching</li>
+          </ul>
+        </div>
+
+        <div class="service-card fade-up" style="transition-delay:.2s">
+          <div class="service-icon">🏆</div>
+          <h3 class="service-title">Wedstrijdcoaching</h3>
+          <p class="service-desc">Competitieve bodybuilding en fitness. Wekelijkse shape checks richting je piekconditie.</p>
+          <ul class="service-features">
+            <li>Wekelijkse shape assessment</li>
+            <li>Maandelijkse vetmeting</li>
+            <li>Peak week protocol</li>
+            <li>On-stage begeleiding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ───────────────────────────────────────── -->
+  <section class="how">
+    <div class="how-inner">
+      <div class="how-header fade-up">
+        <div class="tag">Hoe het werkt</div>
+        <h2 class="section-title">Zo eenvoudig begin je</h2>
+        <p class="section-sub">Drie stappen scheiden jou van het lichaam dat je wilt bereiken.</p>
+      </div>
+
+      <div class="how-steps">
+        <div class="how-connector"></div>
+
+        <div class="how-step fade-up">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Gratis Intakegesprek</h3>
+          <p class="step-desc">We bespreken jouw doelen, ervaring en levensstijl. Geen verplichtingen — gewoon een eerlijk gesprek over wat werkt voor jou.</p>
+        </div>
+        <div class="how-step fade-up" style="transition-delay:.15s">
+          <div class="step-num">2</div>
+          <h3 class="step-title">Jouw Persoonlijk Plan</h3>
+          <p class="step-desc">Je ontvangt binnen 48 uur een volledig op maat gemaakt trainings- en voedingsplan dat perfect bij jou past.</p>
+        </div>
+        <div class="how-step fade-up" style="transition-delay:.3s">
+          <div class="step-num">3</div>
+          <h3 class="step-title">Start & Behaal Resultaten</h3>
+          <p class="step-desc">Begin je traject met 24/7 support, wekelijkse check-ins en maandelijkse aanpassingen op basis van jouw progressie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Results ────────────────────────────────────────────── -->
+  <section class="results" id="resultaten">
+    <div class="results-inner">
+      <div class="results-header">
+        <div class="fade-up">
+          <div class="tag">Bewezen resultaten</div>
+          <h2 class="section-title">Echte mensen.<br><span class="gold">Echte transformaties.</span></h2>
+        </div>
+        <a href="#tarieven" class="btn btn-primary fade-up">Word de volgende →</a>
+      </div>
+
+      <div class="results-grid">
+
+        <!-- Karim — real before/after photo -->
+        <div class="result-card fade-up">
+          <div class="result-img result-img-photo">
+            <img src="Karim/IMG_3532.jpg" alt="Karim transformatie — voor en na" />
+            <div class="result-img-label">
+              <span class="img-tag before">Voor</span>
+              <span class="img-tag after">Na — 12 weken</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <h4 class="result-name">Karim — 2× Kampioen 🏆</h4>
+            <p class="result-quote">"Mindset is everything!"</p>
+            <div class="result-stats">
+              <div class="result-stat">
+                <span class="result-stat-val">−10.8kg</span>
+                <span class="result-stat-lbl">Gewicht</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-val">−13.7%</span>
+                <span class="result-stat-lbl">Vetpercentage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luca — real before/after photo -->
+        <div class="result-card fade-up" style="transition-delay:.1s">
+          <div class="result-img result-img-photo">
+            <img src="Luca/IMG_3533.jpg" alt="Luca transformatie — voor en na" />
+            <div class="result-img-label">
+              <span class="img-tag before">Voor</span>
+              <span class="img-tag after">Na — Wedstrijdklaar</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <h4 class="result-name">Luca — Bikini Fitness 💎</h4>
+            <p class="result-quote">"Nothing is impossible with passion and discipline."</p>
+            <div class="result-stats">
+              <div class="result-stat">
+                <span class="result-stat-val">Volledig</span>
+                <span class="result-stat-lbl">Transformatie</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-val">Wedstrijd</span>
+                <span class="result-stat-lbl">Voorbereiding</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Champions — group photo with medals -->
+        <div class="result-card fade-up" style="transition-delay:.2s">
+          <div class="result-img result-img-photo result-img-champions">
+            <img src="Champions/IMG_3534.jpg" alt="Kalai Coaching kampioenen op het podium" />
+            <div class="result-img-label">
+              <span class="img-tag after" style="background:linear-gradient(135deg,#F5C518,#D4A800);color:#000;">🏆 Kampioenen</span>
+            </div>
+          </div>
+          <div class="result-info">
+            <h4 class="result-name">Onze Kampioenen 🥇</h4>
+            <p class="result-quote">"Van de sportschool naar het podium. Dit is wat toewijding doet."</p>
+            <div class="result-stats">
+              <div class="result-stat">
+                <span class="result-stat-val">15+</span>
+                <span class="result-stat-lbl">Winnaars</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-val">Meerdere</span>
+                <span class="result-stat-lbl">Categorieën</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ────────────────────────────────────────────── -->
+  <section class="pricing" id="tarieven">
+    <div class="pricing-inner">
+      <div class="pricing-header fade-up">
+        <div class="tag">Tarieven</div>
+        <h2 class="section-title">Investeer in jezelf</h2>
+        <p class="section-sub">Transparante prijzen. Geen verborgen kosten. Maandelijks opzegbaar na 3 maanden.</p>
+      </div>
+
+      <div class="pricing-toggle fade-up">
+        <span class="toggle-label active" id="monthly-label">Maandelijks</span>
+        <div class="toggle-track" id="billing-toggle">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="toggle-label" id="yearly-label">Kwartaal &nbsp;<span class="save-badge">−15%</span></span>
+      </div>
+
+      <div class="pricing-grid fade-up">
+        <div class="pricing-card">
+          <h3 class="pricing-plan-name">Online Coaching</h3>
+          <p class="pricing-plan-desc">Voor wie zelfstandig traint en een persoonlijk plan wil.</p>
+          <div class="pricing-amount">
+            <span class="price-currency">€</span>
+            <span class="price-val" id="price-standard">149</span>
+            <span class="price-period">/maand</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Gepersonaliseerd trainingsschema</li>
+            <li><span class="check">✓</span> Volledig voedingsplan</li>
+            <li><span class="check">✓</span> Maandelijkse lichaamsanalyse</li>
+            <li><span class="check">✓</span> Suppletieadvies</li>
+            <li><span class="check">✓</span> 24/7 online contact</li>
+            <li><span class="check">✓</span> Maandelijkse planaanpassing</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center;">Start Intake</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="featured-label">Meest Populair</div>
+          <h3 class="pricing-plan-name">Wedstrijdcoaching</h3>
+          <p class="pricing-plan-desc">Voor wie wil pieken op het podium of maximale resultaten zoekt.</p>
+          <div class="pricing-amount">
+            <span class="price-currency">€</span>
+            <span class="price-val" id="price-comp">229</span>
+            <span class="price-period">/maand</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> Alles uit Online Coaching</li>
+            <li><span class="check">✓</span> Wekelijkse shape assessments</li>
+            <li><span class="check">✓</span> Maandelijkse vetmeting</li>
+            <li><span class="check">✓</span> Wedstrijd-specifiek protocol</li>
+            <li><span class="check">✓</span> Peak week begeleiding</li>
+            <li><span class="check">✓</span> Prioriteit support</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Start Intake
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="fade-up" style="text-align:center;margin-top:24px;font-size:12px;color:var(--muted);">
+        Niet zeker welk pakket past? <a href="#contact" style="color:var(--gold);">Plan een gratis gesprek</a> — samen kijken we wat het beste bij jou past.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ───────────────────────────────────────── -->
+  <section class="testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonials-header fade-up">
+        <div class="tag">Ervaringen</div>
+        <h2 class="section-title">Wat klanten zeggen</h2>
+        <p class="section-sub">Geen marketing. Gewoon de woorden van mensen die het zelf hebben gedaan.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"In 5 maanden heb ik meer bereikt dan in 3 jaar alleen trainen. Hamza begrijpt echt wat werkt voor jouw lichaam — geen standaardverhalen."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">I</div>
+            <div>
+              <div class="author-name">Ivo</div>
+              <div class="author-result">5 maanden · Volledige transformatie</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.1s">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"−39 kg en ik voel me beter dan ooit. Het is niet alleen lichamelijk — mijn hele mindset is veranderd. Hamza leert je hoe je denkt over gezondheid."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">J</div>
+            <div>
+              <div class="author-name">Jeroen</div>
+              <div class="author-result">−39 kg · Levensstijl transformatie</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.2s">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"Als 56-jarige dacht ik dat mijn tijd voorbij was. In 12 weken verloor ik bijna 15 kg. Nothing is impossible with the right coach."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">P</div>
+            <div>
+              <div class="author-name">Pina</div>
+              <div class="author-result">−14.9 kg · 12 weken · 56 jaar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"Twee eerste plaatsen op de Natural Physique Trophy. Zonder Hamza's wedstrijdcoaching was dit niet mogelijk geweest. Beste investering ooit."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">K</div>
+            <div>
+              <div class="author-name">Karim</div>
+              <div class="author-result">2× Wedstrijdwinnaar 🏆</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.1s">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"In 4 maanden meer dan 11 kg kwijt. Maar wat ik gewonnen heb — energie, zelfvertrouwen, een gezonde relatie met eten — dat is onbetaalbaar."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">Mandy</div>
+              <div class="author-result">−11 kg · 4 maanden</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.2s">
+          <div class="testimonial-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"Van 93 kg en 25% vet naar 83 kg en 8.6% vet. Hamza's aanpak is wetenschappelijk maar ook menselijk — hij snapt dat het leven soms in de weg zit."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">Mi</div>
+            <div>
+              <div class="author-name">Milan</div>
+              <div class="author-result">−10 kg · −16.4% vet · Wedstrijdklaar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────── -->
+  <section class="faq">
+    <div class="faq-inner">
+      <div class="faq-header fade-up">
+        <div class="tag">Veelgestelde vragen</div>
+        <h2 class="section-title">Jouw vragen, beantwoord</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">Hoe werkt online coaching precies? <div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Na je intake ontvang je een volledig gepersonaliseerd trainings- en voedingsplan. We communiceren via WhatsApp of een coaching-app. Je stuurt wekelijks updates (foto's, gewicht, energie) en ik pas je plan maandelijks aan. Geen gymlidmaatschap vereist — thuis of sportschool, beide werken.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Moet ik al ervaring hebben met trainen? <div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Nee. Ik werk met complete beginners én gevorderde atleten. Je plan wordt altijd afgestemd op jouw niveau. Beginners krijgen extra technische instructies en een opbouwende progressie.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Wat als ik geen resultaat zie? <div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Dan passen we het plan aan. Altijd. Dat is het voordeel van gepersonaliseerde coaching — wat niet werkt, veranderen we. De maandelijkse check-ins zijn er juist voor om dat te monitoren en bij te sturen.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Hoe lang zit ik vast aan een pakket? <div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Er is een minimale termijn van 3 maanden — omdat duurzame resultaten tijd nodig hebben. Daarna maandelijks opzegbaar. De meeste klanten blijven langer omdat ze de resultaten zien en willen blijven groeien.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is online coaching net zo effectief als persoonlijk trainen? <div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Voor het voedings- en programma-deel: absoluut. Wat je eet en hoe je traint bepaalt 90% van je resultaat. Online coaching geeft je bovendien 24/7 toegang en is flexibeler — je traint wanneer het jou uitkomt.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────────── -->
+  <section class="cta" id="contact">
+    <img class="cta-photo-bg" src="IMG_3531.jpg" alt="" aria-hidden="true" />
+    <div class="cta-overlay"></div>
+    <div class="cta-inner">
+      <div class="tag" style="margin:0 auto 20px;display:table;">Klaar om te starten?</div>
+      <h2 class="cta-title fade-up">
+        Jouw transformatie<br>begint <span class="gold">vandaag</span>
+      </h2>
+      <p class="cta-sub fade-up">Plan een gratis intakegesprek. Geen verplichtingen, geen verkooppraatje — gewoon een eerlijk gesprek over jouw doelen.</p>
+
+      <div class="cta-actions fade-up">
+        <a href="mailto:kalaicoaching@hotmail.com" class="btn btn-primary" style="font-size:15px;padding:18px 40px;">
+          Plan Gratis Intake
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="tel:+31621419351" class="btn btn-ghost" style="font-size:15px;padding:18px 32px;">
+          📞 +31 6 214 193 51
+        </a>
+      </div>
+
+      <div class="cta-trust fade-up">
+        <div class="trust-item"><span class="ico">🔒</span> Geen verplichtingen</div>
+        <div class="trust-item"><span class="ico">⚡</span> Reactie binnen 24u</div>
+        <div class="trust-item"><span class="ico">💬</span> WhatsApp beschikbaar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">KALAI<span>.</span></div>
+          <p class="footer-brand-desc">Gecertificeerde personal training, voedingsbegeleiding en lifestyle coaching voor blijvende resultaten. Online & in Alkmaar.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Facebook">👥</a>
+            <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigatie</h5>
+          <ul>
+            <li><a href="#over-ons">Over Ons</a></li>
+            <li><a href="#diensten">Diensten</a></li>
+            <li><a href="#resultaten">Resultaten</a></li>
+            <li><a href="#tarieven">Tarieven</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Diensten</h5>
+          <ul>
+            <li><a href="#diensten">Online Coaching</a></li>
+            <li><a href="#diensten">Gewichtsverlies</a></li>
+            <li><a href="#diensten">Spieropbouw</a></li>
+            <li><a href="#diensten">Wedstrijdcoaching</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:kalaicoaching@hotmail.com">kalaicoaching@hotmail.com</a></li>
+            <li><a href="tel:+31621419351">+31 6 214 193 51</a></li>
+            <li><a href="#">Einthovenstraat 3, Alkmaar</a></li>
+            <li><a href="#">Ma–Vr 7:00–21:00</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Kalai Coaching. Alle rechten voorbehouden.</p>
+        <div class="footer-legal">
+          <a href="#">Privacybeleid</a>
+          <a href="#">Algemene Voorwaarden</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────────── -->
+  <script>
+    // ── Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Mobile nav drawer
+    const mobileNav      = document.getElementById('mobileNav');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
+    const mobileClose    = document.getElementById('mobileClose');
+    const hamburger      = document.getElementById('hamburger');
+
+    function openMobileNav() {
+      mobileNav.classList.add('open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMobileNav);
+    mobileClose.addEventListener('click', closeMobileNav);
+    mobileBackdrop.addEventListener('click', closeMobileNav);
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
+    // ── Intersection observer for fade-up + stat items
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up, .stat-item').forEach(el => io.observe(el));
+
+    // ── Counter animation
+    const counterIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '+';
+        const dur = 1600;
+        const start = performance.now();
+
+        function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(ease * target).toLocaleString('nl-NL') + (p >= 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('.stat-number[data-target]').forEach(el => counterIO.observe(el));
+
+    // ── Video player
+    const video = document.getElementById('mainVideo');
+    const wrapper = document.getElementById('videoWrapper');
+    const overlay = document.getElementById('videoOverlay');
+    const playBtn = document.getElementById('playBtn');
+
+    function togglePlay() {
+      if (video.paused) {
+        video.muted = false;
+        video.play();
+        wrapper.classList.add('playing');
+      } else {
+        video.pause();
+        wrapper.classList.remove('playing');
+      }
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) togglePlay();
+    });
+
+    video.addEventListener('ended', () => {
+      wrapper.classList.remove('playing');
+    });
+
+    // ── FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Billing toggle
+    const toggle = document.getElementById('billing-toggle');
+    const priceStandard = document.getElementById('price-standard');
+    const priceComp = document.getElementById('price-comp');
+    const monthlyLabel = document.getElementById('monthly-label');
+    const yearlyLabel = document.getElementById('yearly-label');
+    let isYearly = false;
+
+    toggle.addEventListener('click', () => {
+      isYearly = !isYearly;
+      toggle.classList.toggle('on', isYearly);
+      monthlyLabel.classList.toggle('active', !isYearly);
+      yearlyLabel.classList.toggle('active', isYearly);
+      priceStandard.textContent = isYearly ? '127' : '149';
+      priceComp.textContent     = isYearly ? '195' : '229';
+    });
+
+    // ── Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
