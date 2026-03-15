@@ -544,12 +544,11 @@
     .about-img-wrap img {
       width: 100%;
       filter: grayscale(20%) contrast(1.05);
-      display: block;
     }
 
     /* Desktop: B&W portrait visible, workhard hidden */
-    .about-img-mobile { display: none; }
-    .about-img-desktop { display: block; }
+    .about-img-wrap .about-img-desktop { display: block; }
+    .about-img-wrap .about-img-mobile  { display: none; }
 
     /* Gold shimmer gradient over the photo */
     .about-img-wrap::after {
@@ -1401,8 +1400,8 @@
       .about-inner { grid-template-columns: 1fr; gap: 36px; }
       .about-visual { display: block; }
       /* Swap to workhard photo on mobile */
-      .about-img-desktop { display: none; }
-      .about-img-mobile {
+      .about-img-wrap .about-img-desktop { display: none; }
+      .about-img-wrap .about-img-mobile {
         display: block;
         max-height: 280px;
         width: 100%;
